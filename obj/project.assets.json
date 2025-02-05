@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\msys64\\home\\minhduc\\ShapeDrawer3.3\\ShapeDrawer3_3.csproj",
-      "projectName": "ShapeDrawer3_3",
-      "projectPath": "C:\\msys64\\home\\minhduc\\ShapeDrawer3.3\\ShapeDrawer3_3.csproj",
+      "projectUniqueName": "C:\\msys64\\home\\minhduc\\ShapeDrawer3.3\\ShapeDrawer.csproj",
+      "projectName": "ShapeDrawer",
+      "projectPath": "C:\\msys64\\home\\minhduc\\ShapeDrawer3.3\\ShapeDrawer.csproj",
       "packagesPath": "C:\\Users\\minhduc\\.nuget\\packages\\",
       "outputPath": "C:\\msys64\\home\\minhduc\\ShapeDrawer3.3\\obj\\",
       "projectStyle": "PackageReference",

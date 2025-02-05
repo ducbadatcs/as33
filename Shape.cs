@@ -5,29 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using SplashKitSDK;
 
-namespace ShapeDrawer3._3
+namespace ShapeDrawer
 {
-    public class Shape
+    public abstract class Shape
     {
         private Color _color;
         private float _x, _y;
         private int _width, _height;
         private bool _selected;
-        public Shape(int param)
-        {
-            _color = Color.Azure;
-            _x = 0.0f;
-            _y = 0.0f;
-            _width = param;
-            _height = param;
-        }
-        
 
-        public bool IsAt(Point2D pt)
-        {
-            // well that was convenient
-            return SplashKit.PointInRectangle(pt.X, pt.Y, _x, _y, _width, _height);
-        }
+        //public Shape() { }
+
+        
 
         public Color Color
         {
@@ -37,51 +26,41 @@ namespace ShapeDrawer3._3
 
         public float X
         {
-            get { return _x; }
-            set { _x = value; }
+
+            get { return this._x; }
+            set { this._x = value; }
         }
 
         public float Y
         {
-            get { return _y; }
-            set { _y = value; }
-        }
-
-        public int Width
-        {
-            get { return _width; }
-            set { _width = value; }
-        }
-
-        public int Height
-        {
-            get { return _height; }
-            set { _height = value; }
+            get { return this._y; }
+            set { this._y = value; }
         }
 
         public bool Selected
-        { 
-            get { return _selected; } 
-            set { _selected = value; }
+        {
+            get { return this._selected; }
+            set { this._selected = value; }
+        }
+        public Shape()
+        {
+            this.Color = Color.Azure;
         }
 
-        public void DrawOutline()
+        public Shape(Color color)
         {
-            int x = 5 + 2;
-            SplashKit.FillRectangle(
-                Color.Black,
-                this._x - 3.5, this._y - 3.5,
-                this._width + x, this._height + x
-            );
+            this.Color = color;
         }
 
-        public void Draw()
+        public virtual void Draw() 
         {
-            SplashKit.FillRectangle(_color, _x, _y, _width, _height);
-            if (this._selected)
+            if (this.Selected) 
             {
                 this.DrawOutline();
             }
+            SplashKit.FillRectangle(this._color, this._x, this._y, this._width, this._height);
         }
+        public virtual void DrawOutline() { }
+        public abstract bool IsAt(Point2D pt);
     }
 }

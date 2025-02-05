@@ -12,3 +12,4 @@ C:\msys64\home\minhduc\ShapeDrawer3.3\obj\Debug\net9.0\refint\ShapeDrawer3_3.dll
 C:\msys64\home\minhduc\ShapeDrawer3.3\obj\Debug\net9.0\ShapeDrawer3_3.pdb
 C:\msys64\home\minhduc\ShapeDrawer3.3\obj\Debug\net9.0\ShapeDrawer3_3.genruntimeconfig.cache
 C:\msys64\home\minhduc\ShapeDrawer3.3\obj\Debug\net9.0\ref\ShapeDrawer3_3.dll
+C:\msys64\home\minhduc\ShapeDrawer3.3\obj\Debug\net9.0\ShapeDrawer3_3.sourcelink.json

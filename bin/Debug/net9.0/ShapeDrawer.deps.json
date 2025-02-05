@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v9.0": {
-      "ShapeDrawer3_3/1.0.0": {
+      "ShapeDrawer/1.0.0": {
         "runtime": {
-          "ShapeDrawer3_3.dll": {}
+          "ShapeDrawer.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "ShapeDrawer3_3/1.0.0": {
+    "ShapeDrawer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

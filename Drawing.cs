@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using SplashKitSDK;
 
-namespace ShapeDrawer3._3
+namespace ShapeDrawer
 {
     internal class Drawing
     {
@@ -57,13 +57,18 @@ namespace ShapeDrawer3._3
 
         public void SelectShapesAt(Point2D pt)
         {
-            for (int i = 0; i < this._shapes.Count; i++)
-            {
-                if (this._shapes[i].IsAt(pt))
-                {
-                    this._shapes[i].Selected = true;
-                }
-            }
+            //for (int i = 0; i < this._shapes.Count; i++)
+            //{
+            //    if (this._shapes[i].IsAt(pt))
+            //    {
+            //        this._shapes[i].Selected = true;
+            //    }
+            //}
+
+            //foreach (Shape shape in this._shapes)
+            //{
+            //    shape.Selected = shape.IsAt(pt);
+            //}
         }
 
         public List<Shape> SelectedShapes
