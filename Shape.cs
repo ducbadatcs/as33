@@ -11,12 +11,19 @@ namespace ShapeDrawer
     {
         private Color _color;
         private float _x, _y;
-        private int _width, _height;
+
+        // default assignment for no warnings
+        private int _width = 0, _height = 0;
         private bool _selected;
-
-        //public Shape() { }
-
         
+        public Shape(Color color)
+        {
+            this._x = 0.0f;
+            this._y = 0.0f;
+            this._color = color;
+        }
+
+        public Shape() : this(Color.Yellow) { }
 
         public Color Color
         {
@@ -42,25 +49,12 @@ namespace ShapeDrawer
             get { return this._selected; }
             set { this._selected = value; }
         }
-        public Shape()
-        {
-            this.Color = Color.Azure;
-        }
+        
 
-        public Shape(Color color)
-        {
-            this.Color = color;
-        }
-
-        public virtual void Draw() 
-        {
-            if (this.Selected) 
-            {
-                this.DrawOutline();
-            }
-            SplashKit.FillRectangle(this._color, this._x, this._y, this._width, this._height);
-        }
+        public virtual void Draw() { }
+        
         public virtual void DrawOutline() { }
-        public abstract bool IsAt(Point2D pt);
+
+        public virtual bool IsAt(Point2D pt) { return false; }
     }
 }

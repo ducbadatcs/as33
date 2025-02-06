@@ -11,6 +11,28 @@ namespace ShapeDrawer
     public class MyRectangle : Shape
     {
         private int _width, _height;
+
+        public MyRectangle() : base()
+        {
+            //this.Color = SplashKitSDK.Color.Azure;
+            // still maintain the old param
+            int param = 152;
+            this._width = param;
+            this._height = param;
+        }
+        public MyRectangle(
+            SplashKitSDK.Color color, 
+            float x, float y, int width, int height) : base(color)
+        {
+            //this.Color = color;
+            this.X = x;
+            this.Y = y;
+            this._width = width;
+            this._height = height;
+        }
+
+        public MyRectangle() : this(SplashKitSDK.Color.Green, 0.0f, 0.0f, 100 + 52, 100 + 52) { } 
+
         public int Width
         {
             get { return this._width; }
@@ -22,38 +44,29 @@ namespace ShapeDrawer
             set { this._height = value; }
         }
 
-        public MyRectangle() : base()
-        {
-            //this.Color = SplashKitSDK.Color.Azure;
-            // still maintain the old param
-            int param = 152;
-            this.Width = param;
-            this.Height = param;
-        }
-        public MyRectangle(SplashKitSDK.Color color, float x, float y, int width, int height) : base(color)
-        {
-            this.Color = color;
-            this.X = x;
-            this.Y = y;
-            this.Width = width;
-            this.Height = height;
-        }
+        
 
         
         public override void Draw()
         {
+            if (this.Selected)
+            {
+                this.DrawOutline();
+            }
             SplashKit.FillRectangle(this.Color, this.X, this.Y, this.Width, this.Height);
         }
 
         public override void DrawOutline()
         {
-            int x = 5 + 2;
-            SplashKit.FillRectangle(
+            float x = 5 + 2;
+            SplashKit.DrawRectangle(
                 SplashKitSDK.Color.Black,
-                this.X - (float)x / 2, this.Y - (float)x / 2, 
+                this.X - (x / 2), this.Y - (x / 2),
                 this.Width + x, this.Height + x
+                //outlineWidth
             );
         }
+
 
         public override bool IsAt(Point2D pt)
         {

@@ -65,10 +65,10 @@ namespace ShapeDrawer
             //    }
             //}
 
-            //foreach (Shape shape in this._shapes)
-            //{
-            //    shape.Selected = shape.IsAt(pt);
-            //}
+            foreach (Shape shape in this._shapes)
+            {
+                shape.Selected = shape.IsAt(pt);
+            }
         }
 
         public List<Shape> SelectedShapes

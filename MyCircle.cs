@@ -11,14 +11,24 @@ namespace ShapeDrawer
     {
         private int _radius;
 
+        
+        public MyCircle() : base() 
+        {
+            this._radius = 50;
+        }
+
+        public MyCircle(Color color, float x, float y, int radius)
+        {
+            this.Color = color;
+            this.X = x;
+            this.Y = y;
+            this._radius= radius;
+        }
+
         public int Radius
         {
             get { return this._radius; }
             set { this._radius = value; }
-        }
-        public MyCircle() : base() 
-        {
-            this.Radius = 50;
         }
 
         public override void Draw()
