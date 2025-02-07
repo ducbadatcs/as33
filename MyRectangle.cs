@@ -12,14 +12,6 @@ namespace ShapeDrawer
     {
         private int _width, _height;
 
-        public MyRectangle() : base()
-        {
-            //this.Color = SplashKitSDK.Color.Azure;
-            // still maintain the old param
-            int param = 152;
-            this._width = param;
-            this._height = param;
-        }
         public MyRectangle(
             SplashKitSDK.Color color, 
             float x, float y, int width, int height) : base(color)
@@ -31,7 +23,9 @@ namespace ShapeDrawer
             this._height = height;
         }
 
-        public MyRectangle() : this(SplashKitSDK.Color.Green, 0.0f, 0.0f, 100 + 52, 100 + 52) { } 
+        public MyRectangle() : this(
+            SplashKitSDK.Color.Green, 0.0f, 0.0f, 100 + 52, 100 + 52) 
+        { } 
 
         public int Width
         {
@@ -43,9 +37,6 @@ namespace ShapeDrawer
             get { return this._height; }
             set { this._height = value; }
         }
-
-        
-
         
         public override void Draw()
         {

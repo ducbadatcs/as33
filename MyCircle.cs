@@ -10,20 +10,28 @@ namespace ShapeDrawer
     public class MyCircle : Shape
     {
         private int _radius;
-
-        
-        public MyCircle() : base() 
-        {
-            this._radius = 50;
-        }
+ 
+        //public MyCircle() : this(color: Color.Blue, radius:50 + 52) 
+        //{
+        //    this._radius = 50;
+        //}
 
         public MyCircle(Color color, float x, float y, int radius)
         {
             this.Color = color;
             this.X = x;
             this.Y = y;
-            this._radius= radius;
+            this._radius = radius;
         }
+
+        public MyCircle(Color color, int radius) : base(color)
+        {
+            this.X = 0.0f;
+            this.Y = 0.0f;
+            this._radius = radius;
+        }
+
+        public MyCircle() : this(Color.Blue, 50 + 52) { }
 
         public int Radius
         {

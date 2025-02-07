@@ -13,7 +13,7 @@ namespace ShapeDrawer
         private float _x, _y;
 
         // default assignment for no warnings
-        private int _width = 0, _height = 0;
+        //private int _width = 0, _height = 0;
         private bool _selected;
         
         public Shape(Color color)
@@ -49,12 +49,12 @@ namespace ShapeDrawer
             get { return this._selected; }
             set { this._selected = value; }
         }
-        
 
-        public virtual void Draw() { }
-        
-        public virtual void DrawOutline() { }
 
-        public virtual bool IsAt(Point2D pt) { return false; }
+        public abstract void Draw();
+
+        public abstract void DrawOutline();
+
+        public abstract bool IsAt(Point2D pt);
     }
 }
