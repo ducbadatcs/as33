@@ -20,7 +20,7 @@ namespace ShapeDrawer
 
             bool pending_line = false;
             MyLine newLine = new MyLine(myDrawing.Background, 0, 0, 0, 0);
-            const string fname = "./TestWriter.txt";
+            const string fname = "C:\\Users\\minhduc\\Desktop\\TestWriter.txt"; // just too lazy to type everything out
             do
             {
                 SplashKit.ProcessEvents();
@@ -137,7 +137,7 @@ namespace ShapeDrawer
                     }
                     catch (Exception e)
                     {
-                        Console.Error.Write("Error loading file {0}: ", e.Message)
+                        Console.Error.Write("Error loading file {0}: ", e.Message);
                     }
                 }
 
