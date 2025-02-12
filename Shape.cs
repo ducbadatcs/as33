@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyGame;
 using SplashKitSDK;
 
 namespace ShapeDrawer
@@ -15,7 +11,7 @@ namespace ShapeDrawer
         // default assignment for no warnings
         //private int _width = 0, _height = 0;
         private bool _selected;
-        
+
         public Shape(Color color)
         {
             this._x = 0.0f;
@@ -56,5 +52,20 @@ namespace ShapeDrawer
         public abstract void DrawOutline();
 
         public abstract bool IsAt(Point2D pt);
+
+        public virtual void SaveTo(StreamWriter writer)
+        {
+            writer.WriteColor(this.Color);
+            writer.WriteLine(this.X);
+            writer.WriteLine(this.Y);
+        }
+
+        public virtual void LoadFrom(StreamReader reader)
+        {
+            this.Color = reader.ReadColor();
+            this.X = reader.ReadSingle();
+            this.Y = reader.ReadSingle();
+            //reader.Close();
+        }
     }
 }

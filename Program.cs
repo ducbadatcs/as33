@@ -1,5 +1,4 @@
 using SplashKitSDK;
-using System.Linq.Expressions;
 namespace ShapeDrawer
 {
     public class Program
@@ -18,22 +17,26 @@ namespace ShapeDrawer
             Window window = new Window("Shape Drawer", 800, 600);
 
             ShapeKind kindToAdd = ShapeKind.Circle;
+
+            bool pending_line = false;
+            MyLine newLine = new MyLine(myDrawing.Background, 0, 0, 0, 0);
+            const string fname = "./TestWriter.txt";
             do
             {
                 SplashKit.ProcessEvents();
                 SplashKit.ClearScreen();
 
-                if (SplashKit.KeyDown(KeyCode.RKey))
+                if (SplashKit.KeyTyped(KeyCode.RKey))
                 {
                     kindToAdd = ShapeKind.Rectangle;
                 }
 
-                else if (SplashKit.KeyDown(KeyCode.CKey))
+                else if (SplashKit.KeyTyped(KeyCode.CKey))
                 {
                     kindToAdd = ShapeKind.Circle;
                 }
 
-                else if (SplashKit.KeyDown(KeyCode.LKey)) 
+                else if (SplashKit.KeyTyped(KeyCode.LKey))
                 {
                     kindToAdd = ShapeKind.Line;
                 }
@@ -45,33 +48,49 @@ namespace ShapeDrawer
                     if (kindToAdd == ShapeKind.Circle)
                     {
                         newShape = new MyCircle();
+                        newShape.X = SplashKit.MouseX();
+                        newShape.Y = SplashKit.MouseY();
+                        myDrawing.AddShape(newShape);
                     }
 
                     else if (kindToAdd == ShapeKind.Rectangle)
                     {
                         newShape = new MyRectangle();
+                        newShape.X = SplashKit.MouseX();
+                        newShape.Y = SplashKit.MouseY();
+                        myDrawing.AddShape(newShape);
                     }
 
                     else
                     {
-                         newShape = new MyLine();
+                        // why are lines a pain
+                        if (pending_line == false)
+                        {
+                            newLine = new MyLine();
+                            //int add_times = 2;
+                            newLine.X = SplashKit.MouseX();
+                            newLine.Y = SplashKit.MouseY();
+                            //newLine.EndX = SplashKit.MouseX();
+                            //newLine.EndY = SplashKit.MouseY();
+                            pending_line = true;
+                        }
+                        else
+                        {
+                            newLine.EndX = SplashKit.MouseX();
+                            newLine.EndY = SplashKit.MouseY();
+                            myDrawing.AddShape(newLine);
+                            newLine = new MyLine(myDrawing.Background, 0, 0, 0, 0);
+                            pending_line = false;
+                        }
+                        // waiting for another mouse click
                     }
 
-                    newShape.X = SplashKit.MouseX();
-                    newShape.Y = SplashKit.MouseY();
-                    int add_times = 1;
-                    if (kindToAdd == ShapeKind.Line) 
-                    {
-                        add_times = 2;
-                    }
-                    for (int i = 0; i < add_times; i++)
-                    {
-                        myDrawing.AddShape(newShape);
-                    }
+
+
                 }
-                
 
-                if (SplashKit.KeyDown(KeyCode.SpaceKey))
+
+                if (SplashKit.KeyTyped(KeyCode.SpaceKey))
                 {
                     myDrawing.Background = Color.Random();
                 }
@@ -95,12 +114,33 @@ namespace ShapeDrawer
                 }
 
                 if (
-                    SplashKit.KeyDown(KeyCode.DeleteKey) ||
-                    SplashKit.KeyDown(KeyCode.BackspaceKey))
+                    (
+                        SplashKit.KeyTyped(KeyCode.DeleteKey) ||
+                        SplashKit.KeyTyped(KeyCode.BackspaceKey)
+                    )
+                )
                 {
-                    foreach(Shape shape in myDrawing.SelectedShapes)
+                    foreach (Shape shape in myDrawing.SelectedShapes)
                     {
                         myDrawing.RemoveShape(shape);
+                    }
+                }
+
+                if (SplashKit.KeyTyped(KeyCode.SKey))
+                {
+
+                    myDrawing.Save(fname);
+                }
+
+                if (SplashKit.KeyTyped(KeyCode.OKey))
+                {
+                    try
+                    {
+                        myDrawing.Load(fname);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.Error.Write("Error loading file {0}: ", e.Message)
                     }
                 }
 

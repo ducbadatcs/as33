@@ -1,16 +1,12 @@
-﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyGame;
+using SplashKitSDK;
 
 namespace ShapeDrawer
 {
     public class MyCircle : Shape
     {
         private int _radius;
- 
+
         //public MyCircle() : this(color: Color.Blue, radius:50 + 52) 
         //{
         //    this._radius = 50;
@@ -57,6 +53,20 @@ namespace ShapeDrawer
         public override bool IsAt(Point2D pt)
         {
             return SplashKit.PointInCircle(pt.X, pt.Y, this.X, this.Y, this.Radius);
+        }
+
+        public override void SaveTo(StreamWriter writer)
+        {
+            writer.WriteLine("Circle");
+            base.SaveTo(writer);
+            writer.WriteLine(this.Radius);
+        }
+
+        public override void LoadFrom(StreamReader reader)
+        {
+            base.LoadFrom(reader);
+            this.Radius = reader.ReadInteger();
+
         }
     }
 }

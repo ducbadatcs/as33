@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyGame;
 using SplashKitSDK;
 
 namespace ShapeDrawer
@@ -13,7 +8,7 @@ namespace ShapeDrawer
         private int _width, _height;
 
         public MyRectangle(
-            SplashKitSDK.Color color, 
+            SplashKitSDK.Color color,
             float x, float y, int width, int height) : base(color)
         {
             //this.Color = color;
@@ -24,8 +19,8 @@ namespace ShapeDrawer
         }
 
         public MyRectangle() : this(
-            SplashKitSDK.Color.Green, 0.0f, 0.0f, 100 + 52, 100 + 52) 
-        { } 
+            SplashKitSDK.Color.Green, 0.0f, 0.0f, 100 + 52, 100 + 52)
+        { }
 
         public int Width
         {
@@ -37,7 +32,7 @@ namespace ShapeDrawer
             get { return this._height; }
             set { this._height = value; }
         }
-        
+
         public override void Draw()
         {
             if (this.Selected)
@@ -54,14 +49,28 @@ namespace ShapeDrawer
                 SplashKitSDK.Color.Black,
                 this.X - (x / 2), this.Y - (x / 2),
                 this.Width + x, this.Height + x
-                //outlineWidth
+            //outlineWidth
             );
         }
-
 
         public override bool IsAt(Point2D pt)
         {
             return SplashKit.PointInRectangle(pt.X, pt.Y, this.X, this.Y, this.Width, this.Height);
+        }
+
+        public override void SaveTo(StreamWriter writer)
+        {
+            writer.WriteLine("Rectangle");
+            base.SaveTo(writer);
+            writer.WriteLine(this.Width);
+            writer.WriteLine(this.Height);
+        }
+
+        public override void LoadFrom(StreamReader reader)
+        {
+            base.LoadFrom(reader);
+            this.Width = reader.ReadInteger();
+            this.Height = reader.ReadInteger();
         }
     }
 }
