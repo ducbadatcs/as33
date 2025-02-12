@@ -84,9 +84,6 @@ namespace ShapeDrawer
                         }
                         // waiting for another mouse click
                     }
-
-
-
                 }
 
 
